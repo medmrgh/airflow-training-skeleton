@@ -39,11 +39,21 @@ dag = DAG(
 )
 
 
-for i in range(1,5) :
-    DummyOperator(
-        task_id='task{}'.format(i),
-        dag=dag,
-    ) >> DummyOperator(
-        task_id='task{}'.format(i+1),
-        dag=dag,
-    )
+
+t1 = DummyOperator(
+        task_id='task1',
+        dag=dag) 
+t2 = DummyOperator(
+        task_id='task2',
+        dag=dag) 
+t3 = DummyOperator(
+        task_id='task3',
+        dag=dag) 
+t4 = DummyOperator(
+        task_id='task4',
+        dag=dag) 
+t5 = DummyOperator(
+        task_id='task5',
+        dag=dag) 
+
+t1 >> t2 >> [t3, t4] >> t5
